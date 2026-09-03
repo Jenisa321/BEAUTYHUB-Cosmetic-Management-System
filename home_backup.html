@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Hub - Cosmetic Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f5f7;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c2185b;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background-color: #fce4ec;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            color: #ad1457;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #c2185b;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .products {
+            padding: 50px 60px;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ad1457;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-card h3 {
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            margin: 8px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">💄 Beauty Hub</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/admin/">Admin</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>Welcome to Beauty Hub</h1>
+        <p>Cosmetic Management System</p>
+        <a href="/admin/cosmetics/product/" class="btn">
+            Manage Products
+        </a>
+    </section>
+
+    <section class="products">
+        <h2>Available Products</h2>
+
+        <div class="product-container">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <h3>{{ product.name }}</h3>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ product.category }}
+                </p>
+
+                <p>
+                    <strong>Price:</strong>
+                    Rs. {{ product.price }}
+                </p>
+
+                <p>
+                    <strong>Available Stock:</strong>
+                    {{ product.quantity }}
+                </p>
+
+                {% if product.description %}
+                <p>
+                    <strong>Description:</strong>
+                    {{ product.description }}
+                </p>
+                {% endif %}
+
+            </div>
+
+            {% empty %}
+
+            <p>No products available yet.</p>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>© 2026 Beauty Hub Cosmetic Management System</p>
+    </div>
+
+</body>
+</html>

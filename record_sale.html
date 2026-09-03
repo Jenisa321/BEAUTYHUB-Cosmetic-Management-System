@@ -1,0 +1,273 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Record Sale - Beauty Hub</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff7fa;
+            color: #333;
+        }
+
+        nav {
+            background: #c2185b;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            color: #c2185b;
+            margin-bottom: 8px;
+        }
+
+        .title p {
+            color: #777;
+        }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #c2185b;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ef9a9a;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 28px;
+            padding: 14px;
+            background: #c2185b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ad1457;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 80px;
+            background: #c2185b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        💄 Beauty Hub
+    </div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/products/">Products</a>
+        <a href="/admin/">Admin</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="title">
+
+        <h1>💰 Record Sale</h1>
+
+        <p>Record a cosmetic product sale</p>
+
+    </div>
+
+
+    <div class="form-box">
+
+        {% if error %}
+
+        <div class="error">
+            ⚠️ {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>Product</label>
+
+            <select name="product" required>
+
+                <option value="">
+                    Select Product
+                </option>
+
+                {% for product in products %}
+
+                <option value="{{ product.id }}">
+
+                    {{ product.name }} -
+                    Rs. {{ product.price }}
+                    (Stock: {{ product.quantity }})
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Customer</label>
+
+            <select name="customer" required>
+
+                <option value="">
+                    Select Customer
+                </option>
+
+                {% for customer in customers %}
+
+                <option value="{{ customer.id }}">
+
+                    {{ customer.name }} -
+                    {{ customer.phone }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                name="quantity"
+                min="1"
+                required
+                placeholder="Enter quantity"
+            >
+
+
+            <button type="submit">
+                💰 Record Sale
+            </button>
+
+        </form>
+
+
+        <a href="/" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Beauty Hub Cosmetic Management System
+    <br>
+    Developed as a BCSIT Academic Project
+
+</footer>
+
+
+</body>
+</html>
+```

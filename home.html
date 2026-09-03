@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beauty Hub - Cosmetic Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff7fa;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #c2185b;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            margin-left: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #c2185b;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 430px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fce4ec, #fff0f5);
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            color: #ad1457;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h2 {
+            font-size: 25px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #c2185b;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #880e4f;
+        }
+
+        /* Products */
+        .products {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #ad1457;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 35px;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+        }
+
+        .product-icon {
+            font-size: 45px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            text-align: center;
+            color: #c2185b;
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .product-card p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ad1457;
+        }
+
+        .stock {
+            color: #388e3c;
+            font-weight: bold;
+        }
+
+        /* Features */
+        .features {
+            background: #fce4ec;
+            padding: 50px 7%;
+            text-align: center;
+        }
+
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .feature h3 {
+            color: #c2185b;
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .footer p {
+            margin: 5px;
+        }
+
+        .dashboard {
+          width: 86%;
+          margin: 40px auto;
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+        }
+
+        .dashboard-card {
+          background: white;
+          width: 280px;
+          padding: 25px;
+          text-align: center;
+          border-radius: 15px;
+          box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .dashboard-card .icon {
+          font-size: 35px;
+        }
+
+        .dashboard-card h3 { 
+           color: #ad1457;
+           margin: 10px 0;
+        }
+
+        .dashboard-card p {
+          font-size: 32px;
+          font-weight: bold;
+          color: #c2185b;
+          margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="navbar">
+
+        <div class="logo">
+            💄 Beauty Hub
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/admin/">Admin</a>
+        </div>
+
+    </div>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>Welcome to Beauty Hub 💕</h1>
+
+            <h2>Cosmetic Management System</h2>
+
+            <p>
+                Manage your cosmetic products, prices and stock easily
+                with our simple management system.
+            </p>
+
+           <a href="/products/">Manage Products</a>
+        </div>
+
+    </section>
+
+    <div class="dashboard">
+
+        <div class="dashboard-card">
+           <div class="icon">🛍️</div>
+           <h3>Total Products</h3>
+           <p>{{ total_products }}</p>
+        </div>
+
+        <div class="dashboard-card">
+           <div class="icon">📦</div>
+           <h3>Total Stock</h3>
+           <p>{{ total_stock }}</p>
+        </div>
+
+        <div class="dashboard-card">
+           <div class="icon">🧾</div>
+           <h3>Total Sales</h3>
+           <p>{{ total_sales }}</p>
+        </div>
+
+        <div class="dashboard-card">
+           <div class="icon">💰</div>
+           <h3>Total Revenue</h3>
+           <p>Rs. {{ total_revenue }}</p>
+        </div>
+
+    </div>
+
+
+    <!-- Products Section -->
+    <section class="products">
+
+        <h2 class="section-title">
+            Our Products
+        </h2>
+
+        <p class="section-subtitle">
+            Explore our available cosmetic products
+        </p>
+
+        <div class="product-container">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <div class="product-icon">
+                    💄
+                </div>
+
+                <h3>
+                    {{ product.name }}
+                </h3>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ product.category }}
+                </p>
+
+                <p class="price">
+                    Rs. {{ product.price }}
+                </p>
+
+                <p class="stock">
+                    📦 Stock Available: {{ product.quantity }}
+                </p>
+
+                {% if product.description %}
+
+                <p>
+                    <strong>Description:</strong><br>
+                    {{ product.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+            {% empty %}
+
+            <p>
+                No products available yet.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+
+        <h2 class="section-title">
+            System Features
+        </h2>
+
+        <div class="feature-container">
+
+            <div class="feature">
+                <div style="font-size:35px;">📦</div>
+                <h3>Product Management</h3>
+                <p>
+                    Easily add and manage cosmetic products.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div style="font-size:35px;">💰</div>
+                <h3>Price Management</h3>
+                <p>
+                    Keep track of product prices.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div style="font-size:35px;">📊</div>
+                <h3>Stock Management</h3>
+                <p>
+                    Monitor available product quantities.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div style="font-size:35px;">🔐</div>
+                <h3>Admin Control</h3>
+                <p>
+                    Securely manage the system through admin.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <div class="footer">
+
+        <p>
+            © 2026 Beauty Hub Cosmetic Management System
+        </p>
+
+        <p>
+            Developed as a BCSIT Academic Project
+        </p>
+
+    </div>
+
+</body>
+</html>
